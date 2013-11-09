@@ -13,7 +13,7 @@ Download
 ========
 
 * [**Core** 0.1.0 ( build on 2013/11/09 )](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.0)  
-    - Basebox URL: [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.0/vcore-tc.5.0.2-core-i386.box)
+    - Basebox : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.1.0/Vagrantfile),  [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.0/vcore-tc.5.0.2-core-i386.box) 
     - Based on: Tiny Core Linux 5.0.2 
     - Environment: Vagrant with Virtualbox 4.3.2 
     - VM Spec    : 1 cpu / 256M mem / 512M disk (default) 
