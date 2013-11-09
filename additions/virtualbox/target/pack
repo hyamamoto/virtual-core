@@ -1,0 +1,17 @@
+#!/bin/sh
+# vbox-ga shell packager (2013/11/07 Hiroshi Yamamoto)
+if [ $# -eq 0 ] 
+then
+    echo "No arguments supplied. Needs one of [x86, amd64]."
+    exit 1
+fi
+P=`pwd`
+cd $P/$1
+tar cvfz ../vbox-ga.tar.gz . && cat > ../vbox-ga_tar_gz.sh << end
+#!/bin/sh
+./base64 -d -i - > vbox-ga.tar.gz << EOF
+end
+cd $P
+base64 -o - vbox-ga.tar.gz >> vbox-ga_tar_gz.sh
+echo EOF >> vbox-ga_tar_gz.sh
+rm vbox-ga.tar.gz
