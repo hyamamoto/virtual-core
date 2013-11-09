@@ -6,19 +6,19 @@ platform for 'Single purpose operation systems' for
 virtualized environments. They're based on cutomized
 Tiny/Micro Core Linux. Current disk images are packed
 for Vagrant/Virtualbox pair, and the smallest image
-size is about 13Mb. 
+size is 12Mb. 
 
 
 Download
 ========
 
-* **Core** ( build on 2013/11/09 )  
-    - Arch: [i686]() / [amd64]() 
+* [**Core** 0.1.0 ( build on 2013/11/09 )](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.0)  
+    - Basebox URL: [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.0/vcore-tc.5.0.2-core-i386.box)
     - Based on: Tiny Core Linux 5.0.2 
     - Environment: Vagrant with Virtualbox 4.3.2 
     - VM Spec    : 1 cpu / 256M mem / 512M disk (default) 
     - User/pass  : tc/vagrant 
-    - Image size : 12.9M 
+    - Image size : 12.27M 
 
 
 Installation
