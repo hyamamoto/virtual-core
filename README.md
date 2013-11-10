@@ -13,6 +13,7 @@ size is 12Mb.
 
 #### [**Core** 0.1.1](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.1)
 
+##### **Core**  
 * Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/Vagrantfile),  [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/vcore-tc.5.0.2-core-i386.box)
 * Build Date: Nov/10/2013
 * Based on: Tiny Core Linux 5.0.2 i386
@@ -21,6 +22,16 @@ size is 12Mb.
 * User/Pass  : tc/vagrant 
 * Box Size : 12.27M 
 * Box MD5: bd7ef3c2e72f83170766c807383c1b08 
+
+#### **Core 64**
+* Files : [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/vcore-tc.5.0.2-core-amd64.box)
+* Build Date: 2013/11/10
+* Based on: Tiny Core Linux 5.0.2 x86_64 *release_candidates*
+* Tested on: Vagrant 1.3.5 with Virtualbox 4.3.2 
+* VM Spec    : 1 cpu / 256M mem / 512M hdd (default) 
+* User/Pass  : tc/vagrant 
+* Box Size : 21.86M 
+* Box MD5: f29ace82e656f727fcba5b9b3b9aff0d 
 
 
 ### Usage:
