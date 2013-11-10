@@ -23,13 +23,38 @@ rm -f ./vbox-ga.tar.gz
 #sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers
 #sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
 
+# Fix home dir permission
+chmod 0700 /home/tc
+chown tc:staff /home/tc
+
 # Installing vagrant keys
 mkdir -p /home/tc/.ssh
-chmod 700 /home/tc/.ssh
+chmod 0700 /home/tc/.ssh
 cat /mnt/sda1/tce/vagrant_keys >> /home/tc/.ssh/authorized_keys
 rm /mnt/sda1/tce/vagrant_keys
-chmod 600 /home/tc/.ssh/authorized_keys
+chmod 0600 /home/tc/.ssh/authorized_keys
 chown -R tc:staff /home/tc/.ssh
+chmod g-rsx,o-rx /home/tc/.ssh
+SSHCFG=/usr/local/etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 22/g' $SSHCFG
+sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/g' $SSHCFG
+sed -i 's/#ListenAddress ::/ListenAddress ::/g' $SSHCFG
+sed -i 's/#Protocol 2/Protocol 2/g' $SSHCFG
+sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' $SSHCFG
+sed -i 's/#UseDNS yes/UseDNS no/g' $SSHCFG
+sed -i 's/#PermitTunnel no/PermitTunnel no/g' $SSHCFG
+sed -i 's/#PermitTunnel no/PermitTunnel no/g' $SSHCFG
+sed -i 's/#       X11Forwarding no/X11Forwarding no/g' $SSHCFG
+sed -i 's/#       AllowTcpForwarding no/AllowTcpForwarding no/g' $SSHCFG
+sed -i 's/#AllowAgentForwarding yes/AllowAgentForwarding yes/g' $SSHCFG
+sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/g' $SSHCFG
+sed -i 's/#GatewayPorts no/GatewayPorts no/g' $SSHCFG
+sed -i 's/#X11Forwarding no/X11Forwarding no/g' $SSHCFG
+sed -i 's/#X11UseLocalhost yes/X11UseLocalhost yes/g' $SSHCFG
+sed -i 's/#PrintMotd yes/PrintMotd yes/g' $SSHCFG
+sed -i 's/#PrintLastLog yes/PrintLastLog yes/g' $SSHCFG
+sed -i 's/#TCPKeepAlive yes/TCPKeepAlive yes/g' $SSHCFG
+sed -i -e 's/#.*//' -e '/^$/ d' $SSHCFG
 
 # Hints for Dev
 #tce-load -iw compiletc
