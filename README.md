@@ -1,35 +1,48 @@
 Virtual Core Project
 ====================
 
-Virtual Core Project aims to build super compact software platforms
-which is to be 'single purpose operation system' on virtualized
-environments. Based on Tiny Core Linux, the smallest disk image 
-is 12Mb in size. They are tested on a Vagrant/Virtualbox pair.
+Virtual Core Project aims to provide super compact software platforms as a 'single purpose operation system' for virtualized environments. They are based on Tiny Core Linux. The smallest disk image is 12Mb in size and runs on a Vagrant/Virtualbox pair.
 
 ### Downloadables
 
-#### [**Core** 0.1.1](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.1)
+#### [0.4.0 ( Core, Tiny Core )](https://github.com/hyamamoto/virtual-core/releases/tag/0.4.0)
 
 ##### **Core**  
-* Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/Vagrantfile),  [vcore-tc.5.0.2-core-i386.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/vcore-tc.5.0.2-core-i386.box)
-* Build Date: Nov/10/2013
-* Based on: Micro Core Linux 5.0.2 i386
-* Tested on: Vagrant 1.3.5 with Virtualbox 4.3.2 
+* Desc.: Pure and stable. Text mode only. 
+* Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.4/Vagrantfile),  [vcore-0.4-i486-core5.0.2.box](https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-i486-core5.0.2.box)
+* Build Date: Nov/12/2013
+* Based on: Micro Core 5.0.2 i386, Linux kernel 3.8.10
+* Packed for: Vagrant 1.3.5 with Virtualbox 4.3.2 
 * VM Spec    : 1 cpu / 256M mem / 512M hdd (default) 
 * User/Pass  : tc/vagrant 
 * Box Size : 12.27M 
-* Box MD5: bd7ef3c2e72f83170766c807383c1b08 
+* Box MD5: 9edc4ebfc192857cee04d45c2753ef6f 
 
-#### **Core 64**
-* Files : [vcore-tc.5.0.2-core-amd64.box](https://github.com/hyamamoto/virtual-core/releases/download/0.1.1/vcore-tc.5.0.2-core-amd64.box)
-* Build Date: Nov/10/2013
-* Based on: Micro Core Linux 5.0.2 x86_64 *release_candidates*
-* Tested on: Vagrant 1.3.5 with Virtualbox 4.3.2 
+##### **Core 64bit**
+* Desc.: Text mode only.  Additional packages for 64bit Core5 are not stable yet. Take care.
+* Files : [vcore-0.4-amd64-core5.0.2.box](https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-amd64-core5.0.2.box)
+* Build Date: Nov/12/2013
+* Based on: Micro Core 5.0.2 x86_64 *release_candidates*, Linux kernel 3.8.10
+* Packed for: Vagrant 1.3.5 with Virtualbox 4.3.2 
 * VM Spec    : 1 cpu / 256M mem / 512M hdd (default) 
 * User/Pass  : tc/vagrant 
 * Box Size : 21.86M 
-* Box MD5: f29ace82e656f727fcba5b9b3b9aff0d 
+* Box MD5: 5bacb2e4b2d3cdf8c4ba8bb9e1494cc2 
 
+##### **Tiny Core**
+* Desc.: X-Window Desktop is up, and packages like Chromium and OfficeOffice are ready to be installed. 
+* Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.4/Vagrantfile.tinycore)  (Rename after download), [vcore-0.4-x486-tinycore5.0.2.box](https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-i486-tinycore5.0.2.box)
+* Build Date: Nov/12/2013
+* Based on: Tiny Core 5.0.2 i386, Linux kernel 3.8.10,  fwdm_projects
+* Packed for: Vagrant 1.3.5 with Virtualbox 4.3.2 
+* VM Spec    : 1 cpu / 256M mem / 512M hdd (default) 
+* User/Pass  : tc/vagrant 
+* Box Size : 26.93M 
+* Box MD5: d03b110869db7a24b3f25a93873d7a55 
+
+#### [0.1.1 ( Core )](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.1)
+
+#### [0.1.0 ( Core )](https://github.com/hyamamoto/virtual-core/releases/tag/0.1.0)
 
 ### Usage:
 
