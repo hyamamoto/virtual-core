@@ -4,18 +4,14 @@ Veewee::Session.declare({
   :disk_size => '512',
   :disk_format => 'VDI',
   :hostiocache => 'off',
-  :os_type_id => 'Linux26',
-  #:iso_file => "CorePlus-5.0.2.iso",
-  #:iso_src => "http://distro.ibiblio.org/tinycorelinux/5.x/x86/release/CorePlus-5.0.2.iso",
-  #:iso_md5 => '406bf68601aed0a6e29114d4eb280d1d',
+  :os_type_id => 'Linux26_64',
   :iso_file => "Core-5.0.2.iso",
   :iso_src => "http://distro.ibiblio.org/tinycorelinux/5.x/x86/release/Core-5.0.2.iso",
   :iso_md5 => 'e67e0932baea447fcd54fdbe13f3a9b5',
   :iso_download_timeout => "1000",
   :boot_wait => "3",
   :boot_cmd_sequence => [
-    #'<Wait><Esc><Wait>core<Enter>','<Wait>' * 5, # for CorePlus.iso
-    '<Wait><Enter>','<Wait>' * 5, # for Core.iso
+    '<Wait><Enter>','<Wait>' * 5, 
     'sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<Enter>',
     'fdisk -l<Enter>',
     'sudo fdisk /dev/sda<Enter>',
@@ -41,12 +37,29 @@ Veewee::Session.declare({
     'EOF<Enter>',
     'sudo mkdir /mnt/sda1/tce<Enter>',
     'sudo touch /mnt/sda1/tce/mydata.tgz<Enter>',
-    'tce-load -wi coreutils<Enter>', '<Wait>'*45,
-    'sudo cp /usr/local/bin/base64 /mnt/sda1/tce/<Enter><Wait>',
     'tce-load -wi curl<Enter>', '<Wait>'*50,
     'sudo curl -o /mnt/sda1/tce/vagrant_keys https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub<Enter>',
     '<Wait>'*12,
+
+    'BTDIR=/mnt/sda1/boot<Enter>',
+    'DISTURL=http://www.tinycorelinux.net/5.x/x86_64/release_candidates/distribution_files<Enter>',
+     #Or, look at http://www.tinycorelinux.net/5.x/x86/release/distribution_files/
+    'sudo wget $DISTURL/modules64.gz<Enter>','<Wait>'*50,
+    'sudo wget $DISTURL/rootfs64.gz<Enter>','<Wait>'*45,
+    'sudo wget $DISTURL/vmlinuz64<Enter>','<Wait>'*45,
+    'sudo rm $BTDIR/core.gz $BTDIR/vmlinuz<Enter>',
+    'sudo mv rootfs64.gz $BTDIR/rootfs64.gz<Enter><Wait>',
+    'sudo mv modules64.gz $BTDIR/modules64.gz<Enter><Wait>',
+    'sudo mv vmlinuz64 $BTDIR/vmlinuz64<Enter><Wait>',
+    'sudo sed -i \'s/Core Linux/Core Linux 64/g\' $BTDIR/grub/grub.cfg<Enter>',
+    'sudo sed -i \'s/vmlinuz/vmlinuz64/g\' $BTDIR/grub/grub.cfg<Enter>',
+    'sudo sed -i \'s/(hd0,1)\\/boot\\/core.gz/\\(hd0,1\\)\\/boot\\/rootfs64.gz \\(hd0,1\\)\\/boot\\/modules64.gz/g\' $BTDIR/grub/grub.cfg<Enter>',
     'sudo reboot<Enter>', '<Wait>'*22,
+
+    'tce-load -wi coreutils<Enter>', '<Wait>'*45,
+    'sudo cp /usr/local/bin/base64 /mnt/sda1/tce/<Enter><Wait>',
+    'sudo reboot<Enter>', '<Wait>'*22,
+    
     'mv /mnt/sda1/tce/base64 /home/tc/<Enter>',
     'tce-load -wi openssh<Enter>', '<Wait>'*55,
     #'tce-ab<Enter>s', '<Wait>'*6,'openssh<Enter>', '<Wait>'*10,'q<Wait>I', '<Wait>'*55,'q<Wait>',
@@ -63,6 +76,8 @@ Veewee::Session.declare({
     '/bin/mkdir -p /vagrant<Enter>',
     '/bin/chown -R tc:staff /vagrant<Enter>',
     '/bin/chmod -R 777 /vagrant<Enter><Enter>',
+    '/bin/mkdir -p /usr/local/var/ssh<Enter>', # fix: openssh-64
+    '/bin/ln -s /usr/local/var/ssh /var/ssh<Enter>', # fix: openssh-64
     '/usr/local/etc/init.d/openssh start<Enter><Enter>',
     '/sbin/depmod -a<Enter>',
     '/sbin/modprobe vboxguest<Enter>',
@@ -80,7 +95,8 @@ Veewee::Session.declare({
     'poweroff -d 4<Enter>',
     'EOF<Enter>',
     'chmod 755 /home/tc/bin/shutdown<Enter><Wait>',
-    #'sudo filetool.sh -b<Enter>',
+    'sudo /bin/mkdir -p /usr/local/var/ssh<Enter>', # fix: openssh-64
+    'sudo /bin/ln -s /usr/local/var/ssh /var/ssh<Enter>', # fix: openssh-64
     'sudo /usr/local/etc/init.d/openssh start<Enter>',
     'exit<Enter>'
 ],
