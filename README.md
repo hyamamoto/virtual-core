@@ -5,7 +5,7 @@ Virtual Core Project aims to provide super compact software platforms as a 'sing
 
 ### Downloadables
 
-#### [0.4.0 ( Core, Tiny Core )](https://github.com/hyamamoto/virtual-core/releases/tag/0.4.0)
+#### [0.4 ( Core, Tiny Core )](https://github.com/hyamamoto/virtual-core/releases/tag/0.4)
 
 ##### **Core**  
 * Desc.: Pure and stable. Text mode only. 
@@ -31,7 +31,7 @@ Virtual Core Project aims to provide super compact software platforms as a 'sing
 
 ##### **Tiny Core**
 * Desc.: X-Window Desktop is up, and packages like Chromium and OfficeOffice are ready to be installed. 
-* Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.4/Vagrantfile.tinycore)  (Rename after download), [vcore-0.4-x486-tinycore5.0.2.box](https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-i486-tinycore5.0.2.box)
+* Files : [Vagrantfile](https://github.com/hyamamoto/virtual-core/releases/download/0.4/Vagrantfile_tinycore)  (Rename after download), [vcore-0.4-x486-tinycore5.0.2.box](https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-i486-tinycore5.0.2.box)
 * Build Date: Nov/12/2013
 * Based on: Tiny Core 5.0.2 i386, Linux kernel 3.8.10,  fwdm_projects
 * Packed for: Vagrant 1.3.5 with Virtualbox 4.3.2 
