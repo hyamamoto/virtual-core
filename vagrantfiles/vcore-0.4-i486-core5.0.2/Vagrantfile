@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   #config.vm.box_url = "https://github.com/hyamamoto/virtual-core/releases/download/0.4/vcore-0.4-amd64-core5.0.2.box"
   config.vm.boot_timeout = 75
   config.vm.graceful_halt_timeout = 35
-  config.vm.host_name = nil
+  config.vm.host_name = core
   config.vm.guest = :linux
 
   #config.vm.network :forwarded_port,

@@ -62,7 +62,7 @@ and build the image.
 ### Planned
 
 * Core + minimum Ruby or Python set : for Rails, Gerrit
-* Core + httpd + php : for testers
+* Core + httpd(nginx or apache) + php : for testers
 
 --
 Hiroshi Yamamoto (higon@freepress.jp)
