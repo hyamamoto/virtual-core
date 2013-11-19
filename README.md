@@ -59,6 +59,12 @@ Veewee but will be replaced soon. So for now, pull some Veewee definitions
 and build the image.
 
 
+### Testing now...
+
+* Core + Python 2.7 + setuptools  (-core-python)
+* Core + Go Language Toolset (-core-golang)
+
+
 ### Planned
 
 * Core + minimum Ruby or Python set : for Rails, Gerrit
