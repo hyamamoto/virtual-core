@@ -54,6 +54,7 @@ sed -i 's/#X11UseLocalhost yes/X11UseLocalhost yes/g' $SSHCFG
 sed -i 's/#PrintMotd yes/PrintMotd yes/g' $SSHCFG
 sed -i 's/#PrintLastLog yes/PrintLastLog yes/g' $SSHCFG
 sed -i 's/#TCPKeepAlive yes/TCPKeepAlive yes/g' $SSHCFG
+sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' $SSHCFG
 sed -i -e 's/#.*//' -e '/^$/ d' $SSHCFG
 
 # Hints for Dev
