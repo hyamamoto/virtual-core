@@ -1,7 +1,12 @@
 # virtualbox.sh
 
 VBOX_VERSION=$(cat /home/tc/.vbox_version)
-MODULES_DIR=/lib/modules/3.8.10-tinycore/misc
+
+if [ `uname -m` = "x86_64" ]; then
+  MODULES_DIR=/lib/modules/3.8.13-tinycore64/misc
+else
+  MODULES_DIR=/lib/modules/3.8.10-tinycore/misc
+fi
 
 # Install files from Virtualbox Guest Additions
 mkdir -p $MODULES_DIR
@@ -10,6 +15,7 @@ chown root:root *.ko; chmod 644 *.ko
 mv ./vboxguest.ko ./vboxsf.ko ./vboxvideo.ko $MODULES_DIR
 mv ./mount.vboxsf bin/
 rm -f ./vbox-ga.tar.gz
+rm -f ./base64 # this line will be deleted someday.
 
 sudo sh -c "cat >> /opt/bootsync.sh" << EOF
 /sbin/modprobe vboxguest
