@@ -1,0 +1,5 @@
+!.gitignore
+packer_cache
+output_virtualbox
+output_vmware
+*.box
