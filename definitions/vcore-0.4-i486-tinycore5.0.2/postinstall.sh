@@ -27,7 +27,7 @@ rm -f ./vbox-ga.tar.gz
 chmod 0700 /home/tc
 chown tc:staff /home/tc
 
-# Installing vagrant keys
+# sshd Setup. Installing vagrant keys
 mkdir -p /home/tc/.ssh
 chmod 0700 /home/tc/.ssh
 cat /mnt/sda1/tce/vagrant_keys >> /home/tc/.ssh/authorized_keys
@@ -57,10 +57,11 @@ sed -i 's/#TCPKeepAlive yes/TCPKeepAlive yes/g' $SSHCFG
 sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' $SSHCFG
 sed -i -e 's/#.*//' -e '/^$/ d' $SSHCFG
 
-cat >> /home/tc/.ash_history
-alias pushd='DIRS="$PWD
-$DIRS"; cd'
-alias popd='LINE=`echo "\$DIRS" | sed -ne "1p"`;[ "$LINE" != "" ] && cd $LINE;DIRS=`echo "\$DIRS" | sed -e "1d"`'
+cat << EOF >> /home/tc/.ashrc
+alias pushd='DIRS="\$PWD
+\$DIRS"; cd'
+alias popd='LINE=`echo "\\\$DIRS" | sed -ne "1p"`;[ "\$LINE" != "" ] && cd $LINE;DIRS=`echo "\\\$DIRS" | sed -e "1d"`'
+EOF
 
 # Hints for Dev
 #tce-load -iw compiletc
