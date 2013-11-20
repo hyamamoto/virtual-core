@@ -69,7 +69,7 @@ Veewee::Session.declare({
     '/etc/passwd<Enter>',
     '/etc/shadow<Enter>',
     '/usr/local/etc/ssh<Enter>',
-    '/lib/modules/3.8.10-tinycore/misc<Enter>',
+    '/lib/modules/3.8.13-tinycore64/misc<Enter>',
     'EOF<Enter>',
     'sudo sed -i s/box/core/g /opt/bootsync.sh<Enter>',
     'sudo sh -c "cat >> /opt/bootsync.sh" << EOF<Enter>',

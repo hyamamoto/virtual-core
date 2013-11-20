@@ -1,7 +1,7 @@
 # postinstall.sh
 
 VBOX_VERSION=$(cat /home/tc/.vbox_version)
-MODULES_DIR=/lib/modules/3.8.10-tinycore/misc
+MODULES_DIR=/lib/modules/3.8.13-tinycore64/misc
 
 mkdir -p bin && chown tc bin && chgrp staff bin
 date > /opt/vagrant_box_build_time
