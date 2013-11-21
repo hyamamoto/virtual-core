@@ -13,7 +13,8 @@ mkdir -p $MODULES_DIR
 tar xvfz vbox-ga.tar.gz
 chown root:root *.ko; chmod 644 *.ko
 mv ./vboxguest.ko ./vboxsf.ko ./vboxvideo.ko $MODULES_DIR
-mv ./mount.vboxsf bin/
+mkdir -p ./bin
+mv ./mount.vboxsf ./bin/
 rm -f ./vbox-ga.tar.gz
 rm -f ./base64 # this line will be deleted someday.
 

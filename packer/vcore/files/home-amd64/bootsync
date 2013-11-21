@@ -1,0 +1,3 @@
+/bin/mkdir -p /usr/local/var/ssh
+/bin/ln -s /usr/local/var/ssh /var/ssh
+

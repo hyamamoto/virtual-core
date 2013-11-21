@@ -1,14 +1,54 @@
 # postinstall.sh
 
-
+# Some preparation
 mkdir -p bin && chown tc bin && chgrp staff bin
 date > /opt/vagrant_box_build_time
 /bin/ln -s /home/tc/bin/shutdown /sbin/shutdown
 
-# Adding packages to onboot.lst
+# bootsync: Adding lines to /opt/bootsync.sh
+sed -i s/sethostname box/sethostname vcore/g /opt/bootsync.sh
+sh -c "cat >> /opt/bootsync.sh" << EOF
+/bin/mkdir -p /vagrant
+/bin/chown -R tc:staff /vagrant
+/bin/chmod -R 777 /vagrant
+EOF
+touch ./bootsync
+cat bootsync >> /opt/bootsync.sh
+rm ./bootsync
+sh -c "cat >> /opt/bootsync.sh" << EOF
+/usr/local/etc/init.d/openssh start
+/sbin/depmod -a
+/bin/ln -s /home/tc/bin/shutdown /sbin/shutdown
+EOF
+
+# filetool: Adding lines to /opt/.filetool.lst
+cat >> /opt/.filetool.lst << EOF
+/etc/sudoers
+/etc/passwd
+/etc/shadow
+/etc/motd
+/usr/local/etc/ssh
+EOF
+touch ./filetool
+cat filetool >> /opt/.filetool.lst
+rm ./filetool
+
+# xfiletool: Adding lines to /opt/.xfiletool.lst
+touch ./xfiletool
+cat xfiletool >> /opt/.xfiletool.lst
+rm ./xfiletool
+
+# onboot: Adding packages to (tce)/onboot.lst
 touch ./onboot
 cat onboot >> /mnt/sda1/tce/onboot.lst
 rm ./onboot
+
+# shutdown: Placing a power off script
+mkdir -p ./bin
+chown tc:staff ./bin ./shutdown
+chmod 755 ./shutdown
+mv ./shutdown ./bin/
+ln -s /home/tc/bin/shutdown /sbin/shutdown
 
 # Setup sudo to allow no-password sudo for "admin"
 #groupadd -r admin
