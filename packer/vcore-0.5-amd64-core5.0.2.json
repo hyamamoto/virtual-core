@@ -1,4 +1,9 @@
 {
+  "variables" {
+    "vcore_version": "0.5",
+    "vcore_arch": "amd64",
+    "vcore_flavor": "core5.0.2"
+  },
   "provisioners": [
    {
       "type": "file",
@@ -136,7 +141,7 @@
       "only": ["virtualbox"],
       "compression_level": 9,
       "keep_input_artifact": true,
-      "output": "vcore-0.5-amd64-core5.0.2_{{.BuildName}}_{{.Provider}}.box"
+      "output": "vcore-{{user vcore_version}}-{{user vcore_arch}}-{{user vcore_flavor}}_{{.Provider}}.box"
     }
   ]
 }

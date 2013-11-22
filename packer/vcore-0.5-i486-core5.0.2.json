@@ -1,4 +1,9 @@
 {
+  "variables" {
+    "vcore_version": "0.5",
+    "vcore_arch": "i486",
+    "vcore_flavor": "core5.0.2"
+  },
   "provisioners": [
    {
       "type": "file",
@@ -124,7 +129,7 @@
       "vagrantfile_template": "vcore/templates/Vagrantfile",
       "compression_level": 9,
       "keep_input_artifact": true,
-      "output": "vcore-0.5-i486-core5.0.2_{{.BuildName}}_{{.Provider}}.box"
+      "output": "vcore-{{user vcore_version}}-{{user vcore_arch}}-{{user vcore_flavor}}_{{.Provider}}.box"
     }
   ]
 }
