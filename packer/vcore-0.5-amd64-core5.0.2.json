@@ -1,5 +1,5 @@
 {
-  "variables" {
+  "variables": {
     "vcore_version": "0.5",
     "vcore_arch": "amd64",
     "vcore_flavor": "core5.0.2"
