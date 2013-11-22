@@ -2,7 +2,8 @@
   "variables": {
     "vcore_version": "0.5",
     "vcore_arch": "i486",
-    "vcore_flavor": "core5.0.2"
+    "vcore_flavor": "core5.0.2",
+    "command_mirror": "sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<enter><wait>"
   },
   "provisioners": [
    {
@@ -26,11 +27,15 @@
       "scripts": [
         "vcore/scripts/splash-vcore.sh",
         "vcore/scripts/virtualbox.sh",
-        "vcore/scripts/postinstall.sh"
+        "vcore/scripts/postinstall.sh",
+        "vcore/scripts/ram.10.open.sh",
+        "vcore/scripts/ram.20.encoding.sh",
+        "vcore/scripts/ram.30.close.sh",
+        "vcore/scripts/cleanupfsync.sh"
       ],
       "override": {
         "virtualbox": {
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|sudo -S sh -x '{{.Path}}'"
         }
       }
     }
@@ -41,7 +46,6 @@
       "boot_command": [
         "<wait><enter><wait>",
         "<wait><wait><wait><wait><wait><wait>",
-        "sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<enter><wait>",
         "fdisk -l<enter><wait>",
         "sudo fdisk /dev/sda<enter><wait>",
         "n<enter>p<enter>1<enter><enter><enter><wait>",
@@ -129,7 +133,7 @@
       "vagrantfile_template": "vcore/templates/Vagrantfile",
       "compression_level": 9,
       "keep_input_artifact": true,
-      "output": "vcore-{{user vcore_version}}-{{user vcore_arch}}-{{user vcore_flavor}}_{{.Provider}}.box"
+      "output": "vcore-{{user `vcore_version`}}-{{user `vcore_arch`}}-{{user `vcore_flavor`}}_{{.Provider}}.box"
     }
   ]
 }

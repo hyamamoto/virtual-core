@@ -117,19 +117,3 @@ alias ports='netstat -tulanp'
 alias fsync='sudo filetool.sh -b'
 EOF
 
-# Hints for Dev
-#tce-load -iw compiletc
-#tce-load -iw advcomp
-#tce-load -iw mkisofs-tools
-#tce-load -iw linux-3.8.10-sources-env
-#/usr/local/bin/linux-3.8.10-sources-env.sh
-
-# Cleaning up
-rm -f /home/tc/.veewee_params
-rm -f /home/tc/.veewee_version
-rm -f /home/tc/postinstall.sh
-
-cat /dev/null > /home/tc/.ash_history
-
-filetool.sh -b
-exit 0

@@ -26,7 +26,8 @@
       "scripts": [
         "vcore/scripts/splash-vcore.sh",
         "vcore/scripts/virtualbox.sh",
-        "vcore/scripts/postinstall.sh"
+        "vcore/scripts/postinstall.sh",
+        "vcore/scripts/cleanupfsync.sh"
       ],
       "override": {
         "virtualbox": {
@@ -151,7 +152,7 @@
       "vagrantfile_template": "vcore/templates/Vagrantfile",
       "compression_level": 9,
       "keep_input_artifact": true,
-      "output": "vcore-{{user vcore_version}}-{{user vcore_arch}}-{{user vcore_flavor}}_{{.Provider}}.box"
+      "output": "vcore-{{user `vcore_version`}}-{{user `vcore_arch`}}-{{user `vcore_flavor`}}_{{.Provider}}.box"
     }
   ]
 }
