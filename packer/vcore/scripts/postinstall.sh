@@ -92,9 +92,29 @@ sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' $SSHCFG
 sed -i -e 's/#.*//' -e '/^$/ d' $SSHCFG
 
 cat << EOF >> /home/tc/.ashrc
+# generic shortcut
+alias c='clear'
+alias cd..='cd ..'
+alias sl=ls
+alias exit=exiy
+alias reboot='sudo reboot'
+alias psg='ps -elf | grep -v $$ | grep -i -e WCHAN -e '
+# pushd/popd emulation
 alias pushd='DIRS="\$PWD
 \$DIRS"; cd'
-alias popd='LINE=`echo "\\\$DIRS" | sed -ne "1p"`;[ "\$LINE" != "" ] && cd $LINE;DIRS=`echo "\\\$DIRS" | sed -e "1d"`'
+alias popd='LINE=\`echo "\\\$DIRS" | sed -ne "1p"\`;[ "\$LINE" != "" ] && cd \$LINE;DIRS=\`echo "\\\$DIRS" | sed -e "1d"\`'
+# system info
+alias meminfo='free -m -l -t'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+alias cpuinfo='/bin/cat /proc/cpuinfo|/bin/grep -E "processor|model name|cache size|core|sibling|physical"'
+# network info
+alias fastping='ping -c 100 -s.2'
+alias ports='netstat -tulanp'
+# Tiny Core short cut
+alias fsync='sudo filetool.sh -b'
 EOF
 
 # Hints for Dev

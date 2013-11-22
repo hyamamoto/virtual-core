@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.base_mac = "{{ .BaseMacAddress }}"
+  config.vagrant.host = :detect
+  config.vm.boot_timeout = 80
+  config.vm.graceful_halt_timeout = 40
+  config.vm.guest = :linux
+  #config.vm.provider :virtualbox do |vb|
+     #vb.gui = true
+     #vb.customize ["modifyvm", :id, "--memory", "512"]
+  #end
+  config.ssh.default.username = "tc"
+  config.ssh.shell = "sh"
+  config.ssh.guest_port = 22
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = false
+  config.ssh.keep_alive = true
+end

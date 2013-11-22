@@ -38,7 +38,7 @@
         "<wait><wait><wait><wait><wait><wait>",
         "sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<enter><wait>",
         "tce-load -wi tc-install<enter><wait>",
-        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
         "sudo touch /etc/sysconfig/desktop<enter><wait>",
         "sudo tc-install.sh<enter><wait>",
         "<wait><wait><wait><wait><wait><wait>",
@@ -111,7 +111,7 @@
         "exit<enter><wait>"
       ],
       "boot_wait": "3s",
-      "disk_size": 1024,
+      "disk_size": 4096,
       "guest_os_type": "Linux26",
       "iso_checksum": "406bf68601aed0a6e29114d4eb280d1d",
       "iso_checksum_type": "md5",
@@ -143,6 +143,8 @@
     {
       "type": "vagrant",
       "only": ["virtualbox"],
+      "vagrantfile_template": "vcore/templates/Vagrantfile",
+      "compression_level": 9,
       "keep_input_artifact": true,
       "output": "vcore-0.5-i486-tinycore5.0.2_{{.BuildName}}_{{.Provider}}.box"
     }
