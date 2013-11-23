@@ -1,0 +1,1 @@
+85efc9e5402055e487f97b1e2c1ee14e  /mnt/sda1/tce/optional/mylocale.tcz

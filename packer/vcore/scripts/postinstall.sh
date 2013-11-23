@@ -23,10 +23,7 @@ EOF
 
 # filetool: Adding lines to /opt/.filetool.lst
 cat >> /opt/.filetool.lst << EOF
-/etc/sudoers
-/etc/passwd
-/etc/shadow
-/etc/motd
+/usr/local/etc/ssh
 /usr/local/etc/ssh
 EOF
 touch ./filetool
@@ -76,6 +73,8 @@ sed -i 's/#ListenAddress ::/ListenAddress ::/g' $SSHCFG
 sed -i 's/#Protocol 2/Protocol 2/g' $SSHCFG
 sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' $SSHCFG
 sed -i 's/#UseDNS yes/UseDNS no/g' $SSHCFG
+
+sed -i 's/#GSSAPIAuthentication no/GSSAPIAuthentication no/g' $SSHCFG
 sed -i 's/#PermitTunnel no/PermitTunnel no/g' $SSHCFG
 sed -i 's/#PermitTunnel no/PermitTunnel no/g' $SSHCFG
 sed -i 's/#       X11Forwarding no/X11Forwarding no/g' $SSHCFG
