@@ -3,6 +3,9 @@
     "vcore_version": "0.5",
     "vcore_arch": "i486",
     "vcore_flavor": "core5.0.2",
+    "locale": "en_US.utf8",
+    "kmap": "pc110",
+    "tz": "GMT+8"
     "command_mirror": "sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<enter><wait>"
   },
   "provisioners": [
@@ -18,6 +21,11 @@
    },
    {
       "type": "file",
+      "source": "vcore/files/i18n/optionals/{{user `locale`}}/tce/optional/",
+      "destination": "/etc/sysconfig/tcedir/optional"
+   },
+   {
+      "type": "file",
       "source": "vcore/files/virtualbox/vbox-ga.tar.gz",
       "only": ["virtualbox"],
       "destination": "/home/tc/vbox-ga.tar.gz"
@@ -26,11 +34,14 @@
       "type": "shell",
       "scripts": [
         "vcore/scripts/splash-vcore.sh",
+        "vcore/scripts/locale.sh",
         "vcore/scripts/virtualbox.sh",
         "vcore/scripts/postinstall.sh",
         "vcore/scripts/ram.10.open.sh",
-        "vcore/scripts/ram.20.encoding.sh",
-        "vcore/scripts/ram.30.close.sh",
+        "vcore/scripts/ram.13.virtualbox.sh",
+        "vcore/scripts/ram.15.copy.sh",
+        "vcore/scripts/ram.20.locale.sh",
+        "vcore/scripts/ram.50.close.sh",
         "vcore/scripts/cleanupfsync.sh"
       ],
       "override": {
