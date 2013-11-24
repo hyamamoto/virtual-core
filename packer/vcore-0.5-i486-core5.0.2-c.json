@@ -1,0 +1,139 @@
+{
+  "variables": {
+    "vcore_version": "0.5",
+    "vcore_arch": "i486",
+    "vcore_flavor": "core5.0.2",
+    "command_mirror": "sudo echo http://kambing.ui.ac.id/tinycorelinux/ > /opt/tcemirror<enter><wait>"
+  },
+  "provisioners": [
+   {
+      "type": "file",
+      "source": "vcore/files/home/",
+      "destination": "/home/tc"
+   },
+   {
+      "type": "file",
+      "source": "vcore/files/tce/optional/",
+      "destination": "/etc/sysconfig/tcedir/optional"
+   },
+   {
+      "type": "file",
+      "source": "vcore/files/virtualbox/vbox-ga.tar.gz",
+      "only": ["virtualbox"],
+      "destination": "/home/tc/vbox-ga.tar.gz"
+   },
+   {
+      "type": "shell",
+      "scripts": [
+        "vcore/scripts/splash-vcore.sh",
+        "vcore/scripts/virtualbox.sh",
+        "vcore/scripts/postinstall.sh",
+        "vcore/scripts/ram.10.open.sh",
+        "vcore/scripts/ram.20.encoding.sh",
+        "vcore/scripts/ram.30.close.sh",
+        "vcore/scripts/cleanupfsync.sh"
+      ],
+      "override": {
+        "virtualbox": {
+          "execute_command": "echo 'vagrant'|sudo -S sh -x '{{.Path}}'"
+        }
+      }
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox",
+      "boot_command": [
+        "<wait><enter><wait>",
+        "<wait><wait><wait><wait><wait><wait>",
+        "fdisk -l<enter><wait>",
+        "sudo fdisk /dev/sda<enter><wait>",
+        "n<enter>p<enter>1<enter><enter><enter><wait>",
+        "t<enter>83<enter>w<enter><wait><wait><wait>",
+        "sudo mkfs.ext3 /dev/sda1<enter><wait>",
+        "<wait><wait><wait><wait>",
+        "fdisk -l<enter><wait>",
+        "sudo mkdir /mnt/sda1<enter><wait>",
+        "sudo mount /dev/sda1 /mnt/sda1<enter><wait>",
+        "sudo mkdir -p /mnt/sda1/boot/grub<enter><wait>",
+        "sudo mount /dev/sr0 /mnt/sr0<enter><wait>",
+        "cd /mnt/sr0/boot<enter>sudo cp core.gz vmlinuz /mnt/sda1/boot/<enter><wait>cd<enter><wait>",
+        "tce-load -wi grub2<enter><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "sudo grub-install --boot-directory=/mnt/sda1/boot /dev/sda<enter><wait>",
+        "sudo sh -c \"cat > /mnt/sda1/boot/grub/grub.cfg\" << EOF<enter><wait>",
+        "set timeout=0<enter><wait>",
+        "insmod ext2<enter><wait>",
+        "menuentry 'vCore Linux' {<enter><wait>",
+        "  set root=(hd0,1)<enter><wait>",
+        "  linux (hd0,1)/boot/vmlinuz waitusb=0 noswap root=/dev/sda1 tce=sda1<enter><wait>",
+        "  initrd (hd0,1)/boot/core.gz<enter><wait>",
+        "}<enter><wait>",
+        "EOF<enter><wait>",
+        "sudo mkdir /mnt/sda1/tce<enter><wait>",
+        "sudo touch /mnt/sda1/tce/mydata.tgz<enter><wait>",
+        "tce-load -wi curl<enter><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "sudo curl -o /mnt/sda1/tce/vagrant_keys https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub<enter><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "sudo reboot<enter><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "tce-load -wi openssh<enter><wait>",
+        "<wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait><wait>",
+        "sudo cp /usr/local/etc/ssh/sshd_config.example /usr/local/etc/ssh/sshd_config<enter><wait>",
+        "sudo sed -i s/box/core/g /opt/bootsync.sh<enter><wait>",
+        "sudo sh -c \"cat >> /opt/bootsync.sh\" << EOF<enter><wait>",
+        "/bin/mkdir -p /vagrant<enter><wait>",
+        "/bin/chown -R tc:staff /vagrant<enter><wait>",
+        "/bin/chmod -R 777 /vagrant<enter><enter><wait>",
+        "/usr/local/etc/init.d/openssh start<enter><enter><wait>",
+        "/sbin/depmod -a<enter><wait>",
+        "/bin/ln -s /home/tc/bin/shutdown /sbin/shutdown<enter><wait>",
+        "EOF<enter><wait>",
+        "sudo passwd tc<enter><wait><wait>",
+        "vagrant<enter><wait><wait>",
+        "vagrant<enter><wait>",
+        "ifconfig eth0 | grep inet<enter><wait>",
+        "sudo /usr/local/etc/init.d/openssh start<enter><wait>",
+        "exit<enter><wait>"
+      ],
+      "boot_wait": "3s",
+      "disk_size": 4096,
+      "guest_os_type": "Linux26",
+      "iso_checksum": "e67e0932baea447fcd54fdbe13f3a9b5",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://distro.ibiblio.org/tinycorelinux/5.x/x86/release/Core-5.0.2.iso",
+      "ssh_username": "tc",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/home/tc/bin/shutdown' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "256"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "only": ["virtualbox"],
+      "vagrantfile_template": "vcore/templates/Vagrantfile",
+      "compression_level": 9,
+      "keep_input_artifact": true,
+      "output": "vcore-{{user `vcore_version`}}-{{user `vcore_arch`}}-{{user `vcore_flavor`}}_{{.Provider}}.box"
+    }
+  ]
+}
