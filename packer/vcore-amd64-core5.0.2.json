@@ -30,6 +30,16 @@
    },
    {
       "type": "file",
+      "source": "vcore/files/i18n/kmaps/{{user `locale`}}/kmaps",
+      "destination": "/home/tc/kmaps"
+   },
+   {
+      "type": "file",
+      "source": "vcore/files/i18n/locales/{{user `locale`}}/usr/lib/locale/locale-archive",
+      "destination": "/home/tc/locale-archive"
+   },
+   {
+      "type": "file",
       "source": "vcore/files/virtualbox/vbox-ga-amd64.tar.gz",
       "only": ["virtualbox"],
       "destination": "/home/tc/vbox-ga.tar.gz"
@@ -77,7 +87,7 @@
         "insmod ext2<enter><wait>",
         "menuentry 'vCore Linux' {<enter><wait>",
         "  set root=(hd0,1)<enter><wait>",
-        "  linux (hd0,1)/boot/vmlinuz waitusb=0 noswap root=/dev/sda1 tce=sda1<enter><wait>",
+        "  linux (hd0,1)/boot/vmlinuz lang={{user `locale`}} kmap={{user `kmap`}} tz={{user `tz`}} waitusb=0 noswap root=/dev/sda1 tce=sda1<enter><wait>",
         "  initrd (hd0,1)/boot/core.gz<enter><wait>",
         "}<enter><wait>",
         "EOF<enter><wait>",
