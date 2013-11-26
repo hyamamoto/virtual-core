@@ -104,7 +104,7 @@
         "insmod ext2<enter><wait>",
         "menuentry 'vCore Linux' {<enter><wait>",
         "  set root=(hd0,1)<enter><wait>",
-        "  linux (hd0,1)/boot/vmlinuz lang={{user `locale`}} kmap={{user `kmap`}} tz={{user `tz`}} waitusb=0 noswap root=/dev/sda1 tce=sda1<enter><wait>",
+        "  linux (hd0,1)/boot/vmlinuz lang={{user `locale`}} kmap={{user `kmap`}} tz={{user `tz`}} waitusb=0 noswap root=/dev/sda1 tce=sda1 text<enter><wait>",
         "  initrd (hd0,1)/boot/core.gz<enter><wait>",
         "}<enter><wait>",
         "EOF<enter><wait>",
