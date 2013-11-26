@@ -91,6 +91,12 @@ sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' $SSHCFG
 sed -i -e 's/#.*//' -e '/^$/ d' $SSHCFG
 
 cat << EOF >> /home/tc/.ashrc
+# Restart DHCP client
+dhcp_reset() {
+sudo pkill udhcpc
+sleep 0.5
+sudo udhcpc -b -i eth0 -p /var/run/udhcpc.eth0.pid
+}
 # generic shortcut
 alias c='clear'
 alias cd..='cd ..'
@@ -111,8 +117,9 @@ alias ports='netstat -tulanp'
 # Tiny Core short cut
 alias fsync='sudo filetool.sh -b'
 
+EOF
+
 # Colorful prompt
 sed -i -e "s/^PS1=.*/PS1='\\\\e[1;32m\\\\u@\\\\h\\\\e[0m:\\\\e[1;34m\\\\w\\\\e[0m\\\\$ '/" .profile
 sed -i -e "s/^PS1=.*/PS1='\\\\e[1;32m\\\\u@\\\\h\\\\e[0m:\\\\e[1;34m\\\\w\\\\e[0m\\\\$ '/" /etc/skel/.profile
-EOF
 
