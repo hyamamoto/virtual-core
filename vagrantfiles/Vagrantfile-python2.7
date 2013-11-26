@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "vcore-i486-core5.0.2-python2.7"
+
+  config.vagrant.host = :detect
+  config.package.name = 'vcore-0.5-i486-core5.0.2-python2.7'
+
+  #config.vm.box_url = "https://github.com/hyamamoto/virtual-core/releases/download/0.5/vcore-0.5-i486-core5.0.2-c.box"
+  #config.vm.box_url = "https://github.com/hyamamoto/virtual-core/releases/download/0.5/vcore-0.5-i486-core5.0.2.box"
+  config.vm.box_url = "https://github.com/hyamamoto/virtual-core/releases/download/0.5/vcore-0.5-i486-core5.0.2-python2.7.box"
+  #config.vm.box_url = "https://github.com/hyamamoto/virtual-core/releases/download/0.5/vcore-0.5-i486-core5.0.2-golang1.1.box"
+  config.vm.boot_timeout = 75
+  config.vm.graceful_halt_timeout = 35
+  config.vm.guest = :linux
+
+  #config.vm.network :forwarded_port,
+  #  auto_correct: true,
+  #  guest: 80, host: 10080,
+  #  host_ip: "127.0.0.1", id: "http"
+
+  config.vm.synced_folder ".", "/vagrant"
+
+  config.vm.provider :virtualbox do |vb|
+     #vb.gui = true
+     #vb.customize ["modifyvm", :id, "--memory", "512"]
+  end
+
+  config.ssh.default.username = "tc"
+  config.ssh.shell = "sh"
+  config.ssh.guest_port = 22
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = false
+  config.ssh.keep_alive = true
+end
