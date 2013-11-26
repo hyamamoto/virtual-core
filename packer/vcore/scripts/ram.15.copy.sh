@@ -10,6 +10,7 @@ FILES="\
 etc/hostname etc/inittab etc/passwd etc/group etc/shadow \
 etc/sudoers etc/issue etc/motd \
 etc/sysconfig/language etc/sysconfig/keymap etc/sysconfig/desktop \
+etc/skel/.profile \
 opt/.filetool.lst opt/.xfiletool.lst \
 "
 for FILE in $FILES;

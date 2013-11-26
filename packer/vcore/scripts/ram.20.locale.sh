@@ -7,7 +7,7 @@ LOCALE_ARCHIVE_TO=usr/lib/locale/locale-archive
 
 if [ -f $LOCALE_ARCHIVE_FROM ];
 then
-  echo "Copying 'LOCALE_ARCHIVE_FROM' to rd."
+  echo "Copying '$LOCALE_ARCHIVE_FROM' to rd."
   mkdir -p usr/lib/locale
   cp -rf $LOCALE_ARCHIVE_FROM $LOCALE_ARCHIVE_TO
 else

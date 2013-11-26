@@ -98,10 +98,6 @@ alias sl=ls
 alias exit=exiy
 alias reboot='sudo reboot'
 alias psg='ps -elf | grep -v $$ | grep -i -e WCHAN -e '
-# pushd/popd emulation
-alias pushd='DIRS="\$PWD
-\$DIRS"; cd'
-alias popd='LINE=\`echo "\\\$DIRS" | sed -ne "1p"\`;[ "\$LINE" != "" ] && cd \$LINE;DIRS=\`echo "\\\$DIRS" | sed -e "1d"\`'
 # system info
 alias meminfo='free -m -l -t'
 alias psmem='ps auxf | sort -nr -k 4'
@@ -114,5 +110,9 @@ alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 # Tiny Core short cut
 alias fsync='sudo filetool.sh -b'
+
+# Colorful prompt
+sed -i -e "s/^PS1=.*/PS1='\\\\e[1;32m\\\\u@\\\\h\\\\e[0m:\\\\e[1;34m\\\\w\\\\e[0m\\\\$ '/" .profile
+sed -i -e "s/^PS1=.*/PS1='\\\\e[1;32m\\\\u@\\\\h\\\\e[0m:\\\\e[1;34m\\\\w\\\\e[0m\\\\$ '/" /etc/skel/.profile
 EOF
 
