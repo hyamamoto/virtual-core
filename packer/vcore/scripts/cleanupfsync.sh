@@ -1,10 +1,22 @@
 # cleanupfsync.sh
 
+# Clean .ash_history
+cat /dev/null > /home/tc/.ash_history
+if [ -f /home/tc/ash_history.base ];
+then
+  cat /home/tc/ash_history.base >> /home/tc/.ash_history
+  rm /home/tc/ash_history.base
+fi
+if [ -f /home/tc/ash_history ];
+then
+  cat /home/tc/ash_history >> /home/tc/.ash_history
+  rm /home/tc/ash_history
+fi
+
 # Cleaning up
 rm -f /home/tc/.veewee_params
 rm -f /home/tc/.veewee_version
 rm -f /home/tc/postinstall.sh
-cat /dev/null > /home/tc/.ash_history
 
 # File sync
 filetool.sh -b

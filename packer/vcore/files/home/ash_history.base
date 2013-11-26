@@ -1,0 +1,14 @@
+sudo shutdown # shutdown this machine
+sudo killall udhcpc; sleep 0.5; sudo udhcpc -b -i eth0 -p /var/run/udhcpc.eth0.pid # DHCP reset. Somtimes helps when network connection went down.
+sudo mount -t vboxsf /some_virtual_disk /some_local_directory # Mount a VirtualBox's shared directory.
+sudo vi /etc/sysconfig/tcedir/onboot.lst # Edit an exitension list loaded on memory at boot time.
+tce-load -iw links # Download and load "links", the web browser on console.
+tce-load -iw git  # Download and load "git", the version control system. There're "svn", "rsync" and "cvs" other than this.
+tce-load -iw vim  # Download and load "vim", better vi editor.
+tce-load -iw nano # Download and load "nano", the simple text editor, it doesn't have weird key-mapping like "vi"
+tce-load -iw curl # Download and load "curl" for SSL (https) enabled HTTP file fetching.
+tce-load -iw bash # Download and load "bash" for better shell environment.
+tce-ab # Package search and install manager
+sudo vi /opt/.bootlocal.sh # Edit a script executed on boot. (don't forget "sudo filetool.sh -b"" after this)
+sudo vi /opt/.xfiletool.lst # Change file sync target directories. (don't forget "sudo filetool.sh -b"" after this)
+sudo filetool.sh -b # Write on-memory-files to a hard disk. ( see /opt/.xfiletool.lst for target directories. )
