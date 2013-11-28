@@ -16,6 +16,7 @@ fi
 # Cleaning up
 rm -f /home/tc/.veewee_params
 rm -f /home/tc/.veewee_version
+rm -f VBoxGuestAdditions_*.iso
 rm -f /home/tc/postinstall.sh
 
 # File sync
